@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+churn_prediction_end_to_end.egg-info/PKG-INFO
+churn_prediction_end_to_end.egg-info/SOURCES.txt
+churn_prediction_end_to_end.egg-info/dependency_links.txt
+churn_prediction_end_to_end.egg-info/requires.txt
+churn_prediction_end_to_end.egg-info/top_level.txt
+src/train_baseline.py
