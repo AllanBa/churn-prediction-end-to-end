@@ -173,6 +173,5 @@ def run_nn_experiment():
         }
         torch.save(model_data, "models/churn_mlp.pth")
         logger.info("Productions artifacts successfully saved to /models directory.")
-
 if __name__ == "__main__":
     run_nn_experiment()

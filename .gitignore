@@ -24,7 +24,6 @@ __pycache__/
 .idea/
 .DS_Store
 
-# Excecao para os artefatos de producao
 !models/
 !models/*.pkl
 !models/*.pth

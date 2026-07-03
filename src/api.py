@@ -96,17 +96,20 @@ async def predict_churn(customer: CustomerData):
         raise HTTPException(status_code=503, detail="Model is unavailable.")
         
     try:
-
+        # Convert JSON to DataFrame
         input_df = pd.DataFrame([customer.model_dump(by_alias=True)])
         
+        # Apply strict preprocessing (Scaling & Encoding)
         X_processed = preprocessor.transform(input_df)
         
+        # Convert to PyTorch Tensor
         X_tensor = torch.FloatTensor(X_processed)
         
+        # Real Inference Forward Pass
         with torch.no_grad():
             probability = model(X_tensor).item()
             
-        
+        # Business Threshold logic
         prediction = 1 if probability >= 0.5 else 0
         
         latency = (time.time() - start_time) * 1000
