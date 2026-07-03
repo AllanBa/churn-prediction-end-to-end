@@ -1,1 +1,25 @@
+# Environments and Secrets
+venv/
+env/
+.env
 
+# Machine Learning & Data
+mlruns/
+data/
+*.csv
+*.parquet
+*.h5
+*.pkl
+
+# Python Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# IDEs and OS
+.vscode/
+.idea/
+.DS_Store
