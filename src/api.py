@@ -1,7 +1,7 @@
 import time
 import logging
 from fastapi import FastAPI, Request, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 import pandas as pd
 
 # 1. Structured Logging Setup
@@ -50,9 +50,14 @@ class CustomerData(BaseModel):
     internet_service: str = Field(..., alias="Internet Service")
     contract: str = Field(...)
 
-    class Config:
-        populate_by_name = True
-        json_schema_extra = {
+# ... (suas variáveis continuam iguais acima) ...
+    internet_service: str = Field(..., alias="Internet Service")
+    contract: str = Field(...)
+
+    # ML ENGINEERING FIX: Pydantic V2 uses model_config instead of class Config
+    model_config = ConfigDict(
+        populate_by_name=True,
+        json_schema_extra={
             "example": {
                 "Tenure Months": 12,
                 "Monthly Charges": 75.5,
@@ -67,6 +72,7 @@ class CustomerData(BaseModel):
                 "contract": "Month-to-month"
             }
         }
+    )
 
 class PredictionResponse(BaseModel):
     churn_probability: float
