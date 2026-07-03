@@ -23,3 +23,8 @@ __pycache__/
 .vscode/
 .idea/
 .DS_Store
+
+# Excecao para os artefatos de producao
+!models/
+!models/*.pkl
+!models/*.pth

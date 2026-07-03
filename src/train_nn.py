@@ -3,6 +3,7 @@ import logging
 import pandas as pd
 import numpy as np
 import torch
+import joblib
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
@@ -160,6 +161,18 @@ def run_nn_experiment():
             input_example=example_input,
             serialization_format="pickle"
         )
+        os.makedirs("models", exist_ok=True)
+        
+        # 1. Save the fitted Scikit-Learn preprocessor
+        joblib.dump(preprocessor, "models/preprocessor.pkl")
+        
+        # 2. Save the PyTorch model state and expected input dimension
+        model_data = {
+            "input_dim": X.shape[1],
+            "state_dict": final_model.state_dict()
+        }
+        torch.save(model_data, "models/churn_mlp.pth")
+        logger.info("Productions artifacts successfully saved to /models directory.")
 
 if __name__ == "__main__":
     run_nn_experiment()
